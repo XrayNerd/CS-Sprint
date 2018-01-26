@@ -4,7 +4,7 @@ OBJS = src/*
 # -Wall				-> Warn All
 # -Iheaders		-> Includes header directory
 CFLAGS = --std=c++14 -Wall -Iheaders
-LFLAGS = -lSDL2
+LFLAGS = -lSDL2 -lSDL2_image
 OBJ_NAME = main
 
 all : $(OBJS)

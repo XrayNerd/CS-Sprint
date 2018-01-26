@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "graphics.h"
+#include "globals.h"
 
 /*  The Graphics class
 *   Holds everything for Graphics
@@ -9,7 +10,7 @@
 
 Graphics::Graphics()
 {
-  SDL_CreateWindowAndRenderer(640, 480, 0, &this->_window, &this->_renderer);
+  SDL_CreateWindowAndRenderer(globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0, &this->_window, &this->_renderer);
   SDL_SetWindowTitle(this->_window, "Test Game");
 }
 

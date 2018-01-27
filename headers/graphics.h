@@ -1,7 +1,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-
+#include <SDL2/SDL.h>
 
 // Forward declaring in implementation file
 // So it is not included too many times.

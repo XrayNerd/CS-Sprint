@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "sprite.h"
+#include "world.h"
 
 class Graphics;
 
@@ -15,6 +16,7 @@ private:
   void draw(Graphics &graphics);
   void update(float elapsedTime);
 
+  World _world;
   Sprite _player;
 
 };

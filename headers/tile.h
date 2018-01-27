@@ -1,40 +1,36 @@
 #ifndef TILE_H
 #define TILE_H
 
-class World;
+#include "globals.h"
+
+class Graphics;
+struct SDL_Texture;
+struct TileType;
 
 class Tile
 {
 public:
-  Tile(World &world, int x, int y);
-  ~Tile();
+  enum TileType { Empty, Breakable, Unbreakable, StairUp, StairDown, Score, Power};
 
-  enum TileType { Empty, Breakable, Unbreakable, StairUp, StairDown };
-  TileType type = Empty;
-  TileType getTileType();
-  void setTileType(TileType &TileType);
 
-  int X;
-  int Y;
+  Tile();
+  Tile(SDL_Texture* tileset, int x, int y, TileType type, int sX, int sY, int sW, int sH);
 
-  int getX()
-  {
-    return X;
-  }
-  int getY()
-  {
-    return Y;
-  }
+  void update(int elapstedTime);
 
+  void draw(Graphics &graphics);
 protected:
-  void setY(int value)
-  {
-    Y = value;
-  }
-  void setX(int value)
-  {
-    X = value;
-  }
+  TileType _type = Empty;
+
+  SDL_Texture* _tileset;
+  int _xPos;
+  int _yPos;
+  int _sX;
+  int _sY;
+  int _sW;
+  int _sH;
+
+
 };
 
 #endif

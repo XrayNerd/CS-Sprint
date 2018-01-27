@@ -1,4 +1,6 @@
 #include <SDL2/SDL.h>
+#include <iostream>
+using namespace std;
 
 #include "game.h"
 #include "graphics.h"
@@ -27,10 +29,11 @@ Game::~Game()
 
 void Game::gameLoop()
 {
+  cout << "got this far in game!";
   Graphics graphics;
   Input input;
   SDL_Event event;
-
+  this->_world = World(graphics);
   this->_player = Sprite(graphics, "sprites/spritesheet.png", 8, 0, 8, 12, 100, 100);
 
   int LAST_UPDATE_TIME = SDL_GetTicks();
@@ -79,6 +82,7 @@ void Game::draw(Graphics &graphics)
 {
   graphics.clear();
 
+  this->_world.draw(graphics);
   this->_player.draw(graphics, 100, 100);
 
   graphics.flip();

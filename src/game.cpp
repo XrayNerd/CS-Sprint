@@ -90,5 +90,5 @@ void Game::draw(Graphics &graphics)
 
 void Game::update(float elapstedtime)
 {
-
+  this->_world.update(elapstedtime);
 }

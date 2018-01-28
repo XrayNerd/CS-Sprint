@@ -1,6 +1,7 @@
 #include "tile.h"
 #include "graphics.h"
 
+#include <math.h>
 #include <SDL2/SDL.h>
 
 Tile::Tile()
@@ -18,11 +19,16 @@ Tile::Tile(SDL_Texture* tileset, int x, int y, TileType type, int sX, int sY, in
   this->_sY = sY;
   this->_sW = sW;
   this->_sH = sH;
+  this->_id++;
 }
 
-void Tile::update(int elapstedTime)
+void Tile::update(int elapsedtime)
 {
-
+  _timeElapsed += elapsedtime;
+  if (_timeElapsed > 25)
+  {
+    _timeElapsed -= 25;
+  }
 }
 
 void Tile::draw(Graphics &graphics)

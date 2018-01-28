@@ -20,7 +20,7 @@ public:
   World(Graphics &graphics);
   ~World();
 
-  void update(int elapstedTime);
+  void update(int elapsedtime);
   void draw(Graphics &graphics);
 
   int height;

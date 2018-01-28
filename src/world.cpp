@@ -11,7 +11,6 @@ World::World()
 
 World::World(Graphics &graphics)
 {
-  cout << "GOt this far";
   this->loadTileset(graphics);
   for (int x=0; x<75/globals::SPRITE_SCALE; x++)
   {
@@ -40,6 +39,14 @@ void World::draw(Graphics &graphics)
   for (int i = 0; i < this->_tileList.size(); i++)
   {
     this->_tileList[i].draw(graphics);
+  }
+}
+
+void World::update(int elapsedtime)
+{
+  for (int i =0; i< this->_tileList.size(); i++)
+  {
+    this->_tileList[i].update(elapsedtime);
   }
 }
 

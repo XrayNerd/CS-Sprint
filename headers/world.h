@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include <vector>
+#include <map>
 
 #include "globals.h"
 #include "tile.h"
@@ -31,7 +32,7 @@ public:
 private:
   SDL_Texture* _tileset;
   std::vector<Tile> _tileList;
-
+  
   void loadTileset(Graphics &graphics);
 };
 

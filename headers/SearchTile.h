@@ -7,7 +7,7 @@ struct SearchTile
 public:
     int n_xcoord, n_ycoord;
     int n_id;
-    SearchCell *parent;
+    SearchTile *parent;
     float G; //Movement cost from the start point to current square
     float H; //Estimated movement cost from current square to the destination point
 

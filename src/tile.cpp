@@ -1,7 +1,6 @@
 #include "tile.h"
 #include "graphics.h"
 
-#include <math.h>
 #include <SDL2/SDL.h>
 
 Tile::Tile()
@@ -9,47 +8,49 @@ Tile::Tile()
 
 }
 
-Tile::Tile(SDL_Texture* tileset, int x, int y, TileType type, int sX, int sY, int sW, int sH)
+Tile::Tile(SDL_Texture* tileset, Vector2 position, unsigned short id)
 {
   this->_tileset = tileset;
-  this->_xPos = x;
-  this->_yPos = y;
-  this->_type = type;
-  this->_sX = sX;
-  this->_sY = sY;
-  this->_sW = sW;
-  this->_sH = sH;
-  this->_id++;
+  this->_position = position;
+  setId(id);
+  this->_size = Vector2(8, 12);
 }
+
+Vector2 Tile::getTypeSpritePos(unsigned short id)
+{
+  return this->_typesList[id];
+}
+
+void Tile::setId(unsigned short id)
+{
+  this->_id = id;
+  this->_tilesetPosition = getTypeSpritePos(id);
+}
+
+
 
 void Tile::update(int elapsedtime)
 {
-  _timeElapsed += elapsedtime;
-  if (_timeElapsed > 25)
-  {
-    _timeElapsed -= 25;
-  }
+  
 }
 
 void Tile::draw(Graphics &graphics)
 {
   SDL_Rect destRect = 
   { 
-    this->_xPos,
-    this->_yPos,
-    this->_sW * globals::SPRITE_SCALE,
-    this->_sH * globals::SPRITE_SCALE
+    this->_position.x,
+    this->_position.y,
+    this->_size.x * globals::SPRITE_SCALE,
+    this->_size.y * globals::SPRITE_SCALE
   };
 
   SDL_Rect sourceRect = 
   { 
-    this->_sX,
-    this->_sY,
-    this->_sW,
-    this->_sH
+    this->_tilesetPosition.x,
+    this->_tilesetPosition.y,
+    this->_size.x,
+    this->_size.y
   };
 
   graphics.blitSurface(this->_tileset, &sourceRect, &destRect);
 }
-
-

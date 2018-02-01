@@ -17,14 +17,11 @@ World::World(Graphics &graphics)
     for (int y=0; y<40/globals::SPRITE_SCALE; y++)
     {
       Tile tile(this->_tileset,
-            x*8*globals::SPRITE_SCALE,
-            y*12*globals::SPRITE_SCALE,
-            Tile::Empty,
-            96,
-            24,
-            8,
-            12);
-      this->_tileList.push_back(tile);
+		Vector2(x*8*globals::SPRITE_SCALE,
+			y*12*globals::SPRITE_SCALE),
+		0
+	    );
+      this->_tileList.push_back(tile); 
     }
   }
 
@@ -44,7 +41,7 @@ void World::draw(Graphics &graphics)
 
 void World::update(int elapsedtime)
 {
-  for (int i =0; i< this->_tileList.size(); i++)
+  for (int i = 0; i < this->_tileList.size(); i++)
   {
     this->_tileList[i].update(elapsedtime);
   }

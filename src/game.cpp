@@ -29,12 +29,11 @@ Game::~Game()
 
 void Game::gameLoop()
 {
-  cout << "got this far in game!";
   Graphics graphics;
   Input input;
   SDL_Event event;
   this->_world = World(graphics);
-  this->_player = Sprite(graphics, "sprites/spritesheet.png", 8, 0, 8, 12, 100, 100);
+  this->_player = Sprite(graphics, "sprites/spritesheet.png", 16, 0, 8, 12, 100, 100);
 
   int LAST_UPDATE_TIME = SDL_GetTicks();
   // Start the game loop

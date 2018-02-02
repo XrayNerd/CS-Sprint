@@ -27,6 +27,13 @@ void Tile::setId(unsigned short id)
   this->_tilesetPosition = getTypeSpritePos(id);
 }
 
+std::pair<int, int> Tile::getCoords()
+{
+  std::pair<int, int> m;
+  m.first = this->_position.x;
+  m.second = this->_position.y;
+  return m;
+}
 
 
 void Tile::update(int elapsedtime)

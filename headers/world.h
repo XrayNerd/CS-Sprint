@@ -27,8 +27,8 @@ public:
   int height;
   int width;
 
-  Tile GetTileAt(int x, int y);
-  void DestroyTileAt(int x, int y);
+  Tile& getTileAt(unsigned int x, unsigned int y);
+  void destroyTileAt(int x, int y);
 private:
   SDL_Texture* _tileset;
   std::vector<Tile> _tileList;

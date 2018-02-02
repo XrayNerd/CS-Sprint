@@ -17,6 +17,8 @@ public:
   void update(int elapsedtime);
   void draw(Graphics &graphics);
   void setId(unsigned short id);
+  std::pair<int, int> getCoords();
+  void getIsPassble();
 protected:
   SDL_Texture* _tileset;
   unsigned short _id;

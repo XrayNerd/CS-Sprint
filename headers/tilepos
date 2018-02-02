@@ -11,7 +11,7 @@ id	Symbol	Desc			X	Y
 9 	|-	Wall V to Right		24	144
 10 	-|	Wall V to Left		32	132
 11	-'-	Wall H to Top		8	144
-12 	-.-	Wall H to Bottom	16	144
+12 	T	Wall H to Bottom	16	144
 13	+	Cross  	  		40	144
 
 20	^	Stairs up

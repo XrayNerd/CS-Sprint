@@ -33,7 +33,7 @@ void Game::gameLoop()
   Input input;
   SDL_Event event;
   this->_world = World(graphics);
-  this->_player = Sprite(graphics, "sprites/spritesheet.png", 16, 0, 8, 12, 100, 100);
+  this->_player = Player(this->_tileset, Vector2(100, 100), Vector2(16,0));
 
   int LAST_UPDATE_TIME = SDL_GetTicks();
   // Start the game loop
@@ -90,4 +90,9 @@ void Game::draw(Graphics &graphics)
 void Game::update(float elapstedtime)
 {
   this->_world.update(elapstedtime);
+}
+
+void Game::loadTileset(Graphics &graphics)
+{
+  this->_tileset = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage("sprites/spritesheet.png"));
 }

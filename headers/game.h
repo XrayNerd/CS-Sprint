@@ -3,6 +3,7 @@
 
 #include "sprite.h"
 #include "world.h"
+#include "player.h"
 
 class Graphics;
 
@@ -16,8 +17,11 @@ private:
   void draw(Graphics &graphics);
   void update(float elapsedTime);
 
+  void loadTileset(Graphics &graphics);
+
+  SDL_Texture* _tileset;
   World _world;
-  Sprite _player;
+  Player _player;
 
 };
 

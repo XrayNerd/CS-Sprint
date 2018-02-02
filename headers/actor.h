@@ -4,13 +4,19 @@
 #include "globals.h"
 
 class Graphics;
-Struct SDL_Texture;
+struct SDL_Texture;
 
 class Actor
 {
 public:
   Actor();
-  Actor(SDL_Texture* tileset, int x, int y, int sX, int sY, int sW, int sH);
+  Actor(SDL_Texture* tileset, Vector2 position, Vector2 tilesetPosition)
+  {
+    this->_tileset = tileset;
+    this->_position = position;
+    this->_tilesetPosition = tilesetPosition;
+    this->_size = Vector2(8, 12);
+  }
   ~Actor();
 
   void update(int elapsedTime);
@@ -24,16 +30,19 @@ public:
   void moveLeft();
   void moveRight();
 
+  void setTileset(SDL_Texture* tileset)
+  {
+    this->_tileset = tileset;
+  };
+
 private:
+  SDL_Texture* _tileset;
   int speed;
-  bool _isDead;
+  bool _isDead = false;
   float _timeElapsed;
-  int _xPos;
-  int _yPos;
-  int _sX;
-  int _sY;
-  int _sW;
-  int _sH;
+  Vector2 _tilesetPosition;
+  Vector2 _position;
+  Vector2 _size;
 };
 
 

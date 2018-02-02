@@ -21,7 +21,7 @@ World::World(Graphics &graphics)
 			y*12*globals::SPRITE_SCALE),
 		0
 	    );
-      this->_tileList.push_back(tile); 
+      this->_tileList.push_back(tile);
     }
   }
 

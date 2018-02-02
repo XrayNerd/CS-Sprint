@@ -1,3 +1,7 @@
+/*  SearchTile
+*   Search tile finds the shortest path between two nodes.
+*/
+
 #include <math.h>
 
 #define WORLD_SIZE
@@ -13,7 +17,7 @@ public:
 
     SearchTile() : parent(0) {}
     SearchTile(int x ,int y, SearchTile *_parent=0) : n_xcoord, n_ycoord, parent(_parent),
-     n_id(y * WORLD_SIZE + y), G(0), H(0) {};
+     n_id(y * WORLD_SIZE + x), G(0), H(0) {};
 
      float GetF() {return G+H;}
      float ManHattanDistance(SearchTile *nodeEnd)

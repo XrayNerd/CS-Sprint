@@ -10,13 +10,8 @@ class Actor
 {
 public:
   Actor();
-  Actor(SDL_Texture* tileset, Vector2 position, Vector2 tilesetPosition)
-  {
-    this->_tileset = tileset;
-    this->_position = position;
-    this->_tilesetPosition = tilesetPosition;
-    this->_size = Vector2(8, 12);
-  }
+  Actor(Graphics &graphics, Vector2 position, Vector2 tilesetPosition);
+  
   ~Actor();
 
   void update(int elapsedTime);
@@ -29,17 +24,17 @@ public:
   void moveDown();
   void moveLeft();
   void moveRight();
+  void stopMovingX();
+  void stopMovingY();
 
-  void setTileset(SDL_Texture* tileset)
-  {
-    this->_tileset = tileset;
-  };
+  void loadTileset(Graphics &graphics);
 
 private:
   SDL_Texture* _tileset;
   int speed;
   bool _isDead = false;
   float _timeElapsed;
+  Vector2 _deltaPosition;
   Vector2 _tilesetPosition;
   Vector2 _position;
   Vector2 _size;

@@ -17,9 +17,6 @@ private:
   void draw(Graphics &graphics);
   void update(float elapsedTime);
 
-  void loadTileset(Graphics &graphics);
-
-  SDL_Texture* _tileset;
   World _world;
   Player _player;
 

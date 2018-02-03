@@ -33,7 +33,7 @@ void Game::gameLoop()
   Input input;
   SDL_Event event;
   this->_world = World(graphics);
-  this->_player = Player(this->_tileset, Vector2(100, 100), Vector2(16,0));
+  this->_player = Player(graphics, 3, Vector2(100, 100), Vector2(16,0));
 
   int LAST_UPDATE_TIME = SDL_GetTicks();
   // Start the game loop
@@ -65,6 +65,32 @@ void Game::gameLoop()
     {
       return;
     }
+    if (input.isKeyHeld(SDL_SCANCODE_A) == true)
+    {
+      this->_player.moveLeft();
+    }
+    if (input.isKeyHeld(SDL_SCANCODE_D) == true)
+    {
+      this->_player.moveRight();
+    }
+    if (input.isKeyHeld(SDL_SCANCODE_W) == true)
+    {
+      this->_player.moveUp();
+    }
+    if (input.isKeyHeld(SDL_SCANCODE_S) == true)
+    {
+      this->_player.moveDown();
+    }
+    if (!input.isKeyHeld(SDL_SCANCODE_W) &&
+	!input.isKeyHeld(SDL_SCANCODE_S))
+    {
+      this->_player.stopMovingY();
+    }
+    if (!input.isKeyHeld(SDL_SCANCODE_A) &&
+	!input.isKeyHeld(SDL_SCANCODE_D))
+    {
+      this->_player.stopMovingX();
+    }    
 
 
     const int CURRENT_TIME_MS = SDL_GetTicks();
@@ -82,17 +108,14 @@ void Game::draw(Graphics &graphics)
   graphics.clear();
 
   this->_world.draw(graphics);
-  this->_player.draw(graphics, 100, 100);
+  this->_player.draw(graphics);
 
   graphics.flip();
 }
 
-void Game::update(float elapstedtime)
+void Game::update(float elapsedTime)
 {
-  this->_world.update(elapstedtime);
+  this->_world.update(elapsedTime);
+  this->_player.update(elapsedTime);
 }
 
-void Game::loadTileset(Graphics &graphics)
-{
-  this->_tileset = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage("sprites/spritesheet.png"));
-}

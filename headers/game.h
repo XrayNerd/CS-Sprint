@@ -14,12 +14,19 @@ public:
   ~Game();
 private:
   void gameLoop();
-  void draw(Graphics &graphics);
+  void draw(Graphics &graphics, Vector2 camera);
   void update(float elapsedTime);
+  void loadTileset(Graphics &graphics);
 
+  void setCameraPosition(Vector2 position);
+  
+  Vector2 _camera;
   World _world;
   Player _player;
-
+  Sprite _sprite;
+  
+  SDL_Texture* _tileset;
+  
 };
 
 #endif

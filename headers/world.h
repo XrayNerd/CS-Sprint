@@ -22,17 +22,19 @@ public:
   ~World();
 
   void update(int elapsedtime);
-  void draw(Graphics &graphics);
+  void draw(Graphics &graphics, Vector2 camera);
 
-  int height;
-  int width;
+  int height = 50;
+  int width = 50;
 
   Tile& getTileAt(unsigned int x, unsigned int y);
   void destroyTileAt(int x, int y);
 private:
   SDL_Texture* _tileset;
   std::vector<Tile> _tileList;
-  
+  std::vector< std::vector< Vector2 > > _gridList;
+
+  void populateGrid();
   void loadTileset(Graphics &graphics);
 };
 

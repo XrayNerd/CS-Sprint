@@ -28,7 +28,7 @@ public:
 private:
 
   void SetStartAndObj (SearchCell start, SearchCell obj);
-  void PathOpened (int x , int z, float newCost, SearchCell *parent );
+  void PathOpened (int x , int y, float newCost, SearchCell *parent );
   SearchCell *GetNextCell();
   void ContinuePath();
 
@@ -38,5 +38,6 @@ private:
   std::vector<SearchCell*> m_visitedList;
   std::vector<Vector2*>m_pathToObj;
 };
+
 
 #endif

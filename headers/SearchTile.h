@@ -6,7 +6,7 @@
 
 #define WORLD_SIZE
 
-struct SearchCell
+struct SearchCell;
 {
 public:
     int n_xcoord, n_ycoord;

@@ -4,15 +4,18 @@
 
 Actor::Actor()
 {
-
+  
 }
 
-Actor::Actor(Graphics &graphics, Vector2 position, Vector2 tilesetPosition)
+Actor::Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition) :
+  Sprite(tileset,
+	 graphics,
+	 "sprites/spritesheet.png",
+	 tilesetPosition,
+	 Vector2(8, 12),
+	 position)
 {
-  this->loadTileset(graphics);
-  this->_position = position;
-  this->_tilesetPosition = tilesetPosition;
-  this->_size = Vector2(8, 12);
+  
 }
 
 Actor::~Actor()
@@ -20,12 +23,14 @@ Actor::~Actor()
 
 }
 
-void Actor::draw(Graphics &graphics)
+void Actor::draw(Graphics &graphics, Vector2 camera)
 {
+  Sprite::draw(graphics, camera);
+  /*
   SDL_Rect destRect =
   {
-    this->_position.x,
-    this->_position.y,
+    Sprite::_position.x,
+    Sprite::_position.y,
     this->_size.x * globals::SPRITE_SCALE,
     this->_size.y * globals::SPRITE_SCALE
   };
@@ -36,15 +41,15 @@ void Actor::draw(Graphics &graphics)
     this->_tilesetPosition.y,
     8,
     12
-  };
+    };
 
-  graphics.blitSurface(this->_tileset, &sourceRect, &destRect);
+    graphics.blitSurface(this->_tileset, &sourceRect, &destRect);*/
 }
 
 void Actor::update(int elapsedTime)
 {
   this->_position.x += this->_deltaPosition.x * elapsedTime/5;
-  this->_position.y += this->_deltaPosition.y * elapsedTime/5;
+    this->_position.y += this->_deltaPosition.y * elapsedTime/5;
 }
 
 /* This is y-- because the coordinate
@@ -72,11 +77,11 @@ void Actor::moveRight()
 
 void Actor::stopMovingX()
 {
-  this->_deltaPosition.x = 0;
+  this->_deltaPosition.x = 0.0f;
 }
 void Actor::stopMovingY()
 {
-  this->_deltaPosition.y = 0;
+  this->_deltaPosition.y = 0.0f;
 }
 
 void Actor::kill()

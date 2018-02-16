@@ -1,30 +1,37 @@
 #include "tile.h"
 #include "graphics.h"
+#include "sprite.h"
 
+#include <iostream>
 #include <SDL2/SDL.h>
+using namespace std;
 
 Tile::Tile()
 {
 
 }
 
-Tile::Tile(SDL_Texture* tileset, Vector2 position, unsigned short id)
+Tile::Tile(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned short id) :
+  Sprite(tileset,
+	 graphics,
+	 "sprites/spritesheet.png",
+	 types::_typesList[0],
+	 Vector2(8, 12),
+	 position)
 {
-  this->_tileset = tileset;
-  this->_position = position;
-  setId(id);
-  this->_size = Vector2(8, 12);
+  //  this->_tileset = tileset;
+  this->_id = id;
 }
 
 Vector2 Tile::getTypeSpritePos(unsigned short id)
 {
-  return this->_typesList[id];
+  return types::_typesList[id];
 }
 
 void Tile::setId(unsigned short id)
 {
-  this->_id = id;
-  this->_tilesetPosition = getTypeSpritePos(id);
+  //this->_id = id;
+  //this->_tilesetPosition = getTypeSpritePos(id);
 }
 
 std::pair<int, int> Tile::getCoords()
@@ -41,8 +48,10 @@ void Tile::update(int elapsedtime)
   
 }
 
-void Tile::draw(Graphics &graphics)
+void Tile::draw(Graphics &graphics, Vector2 camera)
 {
+  Sprite::draw(graphics, camera);
+  /*
   SDL_Rect destRect = 
   { 
     this->_position.x,
@@ -59,5 +68,5 @@ void Tile::draw(Graphics &graphics)
     this->_size.y
   };
 
-  graphics.blitSurface(this->_tileset, &sourceRect, &destRect);
+  graphics.blitSurface(this->_tileset, &sourceRect, &destRect);*/
 }

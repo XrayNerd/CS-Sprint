@@ -13,7 +13,7 @@ class Actor : public Sprite
 public:
   Actor();
   Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition);
-  
+
   ~Actor();
 
   void update(int elapsedTime);
@@ -31,8 +31,7 @@ public:
 
   void loadTileset(Graphics &graphics);
 
-private:
-  SDL_Texture* _tileset;
+protected:
   int speed;
   bool _isDead = false;
   float _timeElapsed;

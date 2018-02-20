@@ -25,7 +25,23 @@ Actor::~Actor()
 
 void Actor::draw(Graphics &graphics, Vector2 camera)
 {
-  Sprite::draw(graphics, camera);
+   SDL_Rect destinationRectangle =
+     {_position.x - camera.x,
+      _position.y - camera.y,
+      _sourceRect.w * globals::SPRITE_SCALE,
+      _sourceRect.h * globals::SPRITE_SCALE};
+   SDL_Rect fillRectangle =
+     {_position.x - camera.x,
+      _position.y - camera.y + 8,
+      _sourceRect.w * globals::SPRITE_SCALE,
+      _sourceRect.h * globals::SPRITE_SCALE-8};
+  SDL_SetRenderDrawColor(graphics.getRenderer(), 0x00, 0x00, 0x00, 0xFF );
+  SDL_RenderFillRect(graphics.getRenderer(), &fillRectangle);
+  graphics.blitSurface(_tileset,
+		       &_sourceRect,
+		       &destinationRectangle);
+}
+// Sprite::draw(graphics, camera);
   /*
   SDL_Rect destRect =
   {
@@ -44,7 +60,7 @@ void Actor::draw(Graphics &graphics, Vector2 camera)
     };
 
     graphics.blitSurface(this->_tileset, &sourceRect, &destRect);*/
-}
+//}
 
 void Actor::update(int elapsedTime)
 {
@@ -55,6 +71,7 @@ void Actor::update(int elapsedTime)
 /* This is y-- because the coordinate
  * system starts in the top left.
  */
+
 void Actor::moveUp()
 {
   this->_deltaPosition.y = -1;

@@ -13,12 +13,10 @@ Sprite::Sprite(SDL_Texture* tileset,
 {
   this->_tileset = tileset;
   this->_position = position;
-  
   this->_sourceRect.x = sourcePosition.x;
   this->_sourceRect.y = sourcePosition.y;
   this->_sourceRect.w = size.x;
   this->_sourceRect.h = size.y;
- 
 }
 
 Sprite::~Sprite()
@@ -33,7 +31,7 @@ void Sprite::draw(Graphics &graphics, Vector2 camera)
      this->_position.y - camera.y,
      this->_sourceRect.w * globals::SPRITE_SCALE,
      this->_sourceRect.h * globals::SPRITE_SCALE};
-
+  
   graphics.blitSurface(this->_tileset,
 		       &this->_sourceRect,
 		       &destinationRectangle);
@@ -43,8 +41,8 @@ Vector2 Sprite::getPosition()
 {
   return this->_position;
 }
-  
+
 void Sprite::update()
 {
-  
+
 }

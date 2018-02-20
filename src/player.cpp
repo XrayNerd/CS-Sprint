@@ -36,6 +36,3 @@ void Player::collectNote()
 {
   this->_collectedNotes += 1;
 }
-
-
-

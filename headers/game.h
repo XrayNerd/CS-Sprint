@@ -4,6 +4,7 @@
 #include "sprite.h"
 #include "world.h"
 #include "player.h"
+#include "enemy.h"
 
 class Graphics;
 
@@ -23,6 +24,7 @@ private:
   Vector2 _camera;
   World _world;
   Player _player;
+  Enemy _enemy;
   Sprite _sprite;
   
   SDL_Texture* _tileset;

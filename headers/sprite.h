@@ -20,15 +20,13 @@ Sprite(SDL_Texture* tileset, Graphics &graphics, const std::string &filePath, Ve
   virtual ~Sprite();
   virtual void update();
   void draw(Graphics &graphics, Vector2 camera);
-  
+
   Vector2 getPosition();
-  
-private:
-  SDL_Rect _sourceRect;
-  SDL_Texture* _tileset;
 
 protected:
   Vector2 _position;
+  SDL_Rect _sourceRect;
+  SDL_Texture* _tileset;
 
 };
 

@@ -36,6 +36,7 @@ void Game::gameLoop()
   SDL_Event event;
   this->loadTileset(graphics);
   this->_world = World(graphics);
+  this->_enemy = Enemy(_tileset, graphics, Vector2(16,24), Vector2(8,0), 3);
   this->_player = Player(_tileset, graphics, 3, Vector2(300, 240), Vector2(16,0));
   this->_sprite = Sprite(_tileset, graphics, "sprites/spritesheet.png", Vector2(56, 0), Vector2(8, 12), this->_player.getPosition());
 
@@ -44,6 +45,7 @@ void Game::gameLoop()
   while (true)
   {
     input.beginNewFrame();
+    this->_enemy.Enemy::moveDown();
 
     if (SDL_PollEvent(&event))
     {
@@ -98,7 +100,7 @@ void Game::gameLoop()
 	 input.isKeyHeld(SDL_SCANCODE_D)))
     {
       this->_player.stopMovingX();
-    }    
+    }
 
 
     const int CURRENT_TIME_MS = SDL_GetTicks();
@@ -117,6 +119,7 @@ void Game::draw(Graphics &graphics, Vector2 camera)
   this->_world.draw(graphics, camera);
   this->_player.draw(graphics, camera);
   this->_sprite.draw(graphics, camera);
+  this->_enemy.Enemy::draw(graphics, camera);
   graphics.flip();
 }
 
@@ -124,6 +127,7 @@ void Game::update(float elapsedTime)
 {
   this->_world.update(elapsedTime);
   this->_player.update(elapsedTime);
+  this->_enemy.Enemy::update(elapsedTime);
   this->setCameraPosition(Vector2((this->_player.getPosition().x + 8) - globals::SCREEN_WIDTH/2,
 				    (this->_player.getPosition().y + 16) - globals::SCREEN_HEIGHT/2));
 }

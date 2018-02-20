@@ -20,11 +20,11 @@ World::World(Graphics &graphics)
     for (int x=0; x<World::width; x++)
     {
       Tile tile(this->_tileset,
-		graphics,
-		Vector2(x*8*globals::SPRITE_SCALE,
-			y*12*globals::SPRITE_SCALE),
-		0
-		);
+                graphics,
+                Vector2(x*8*globals::SPRITE_SCALE,
+                        y*12*globals::SPRITE_SCALE),
+                0
+                );
       this->_tileList.push_back(tile);
     }
   } 
@@ -39,7 +39,7 @@ void World::draw(Graphics &graphics, Vector2 camera)
 {
   for (int i = 0; i < this->_tileList.size(); i++)
   {
-    this->_tileList[i].draw(graphics, camera);
+      this->_tileList[i].draw(graphics, camera);
   }
 }
 

@@ -32,7 +32,7 @@ void Actor::draw(Graphics &graphics, Vector2 camera)
      {_position.x - camera.x,
       _position.y - camera.y + 8,
       _size.x,
-      _size.y - 8};
+      _size.y - _size.y/4};
   SDL_SetRenderDrawColor(graphics.getRenderer(), 0x00, 0x00, 0x00, 0xFF );
   SDL_RenderFillRect(graphics.getRenderer(), &fillRectangle);
   graphics.blitSurface(_tileset,

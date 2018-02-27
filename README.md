@@ -46,6 +46,6 @@ These are things that we need have planned to do:
     * [ ] Main
     * [ ] Pause
   * [ ] HUD
-  * [ ] Exam question "combat system" #
+  * [ ] Exam question "combat system" $
 
 $ These things are **mission critical**.

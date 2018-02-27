@@ -7,16 +7,14 @@ Actor::Actor()
   
 }
 
-Actor::Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition) :
+Actor::Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition, Vector2 size) :
   Sprite(tileset,
 	 graphics,
 	 "sprites/spritesheet.png",
 	 tilesetPosition,
-	 Vector2(8, 12),
+	 size,
 	 position)
-{
-  
-}
+{}
 
 Actor::~Actor()
 {
@@ -28,13 +26,13 @@ void Actor::draw(Graphics &graphics, Vector2 camera)
    SDL_Rect destinationRectangle =
      {_position.x - camera.x,
       _position.y - camera.y,
-      _sourceRect.w * globals::SPRITE_SCALE,
-      _sourceRect.h * globals::SPRITE_SCALE};
+      _size.x,
+      _size.y};
    SDL_Rect fillRectangle =
      {_position.x - camera.x,
       _position.y - camera.y + 8,
-      _sourceRect.w * globals::SPRITE_SCALE,
-      _sourceRect.h * globals::SPRITE_SCALE-8};
+      _size.x,
+      _size.y - 8};
   SDL_SetRenderDrawColor(graphics.getRenderer(), 0x00, 0x00, 0x00, 0xFF );
   SDL_RenderFillRect(graphics.getRenderer(), &fillRectangle);
   graphics.blitSurface(_tileset,

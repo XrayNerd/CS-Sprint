@@ -20,15 +20,15 @@ private:
   void loadTileset(Graphics &graphics);
 
   void setCameraPosition(Vector2 position);
-  
+
   Vector2 _camera;
   World _world;
   Player _player;
   Enemy _enemy;
   Sprite _sprite;
-  
+
   SDL_Texture* _tileset;
-  
+
 };
 
 #endif

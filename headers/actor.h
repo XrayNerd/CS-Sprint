@@ -12,7 +12,7 @@ class Actor : public Sprite
 {
 public:
   Actor();
-  Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition);
+  Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition, Vector2 size);
 
   ~Actor();
 

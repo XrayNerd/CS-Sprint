@@ -51,8 +51,7 @@ void World::update(int elapsedtime)
 Tile& World::getTileAt(unsigned int x, unsigned int y)
 {
   int xCoord = (x - (x % 8))/8;
-  int yCoord = (y - (y % 12))/12;
-  return this->_tileList[yCoord * 40/2 + xCoord];
+  int yCoord = (y - (y % 12))/12;  return this->_tileList[yCoord * 40/2 + xCoord];
 }
 
 void World::loadTileset(Graphics &graphics)

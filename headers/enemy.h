@@ -10,7 +10,7 @@ public:
   Enemy(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition, float size );
   ~Enemy();
 
-  void draw(Graphics &graphics, Vector2 camera);
+  //  void draw(Graphics &graphics, Vector2 camera);
   void update(int elapsedTime);
 
   void takeDamage();

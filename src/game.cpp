@@ -133,6 +133,14 @@ void Game::update(float elapsedTime)
   this->_enemy.Enemy::update(elapsedTime);
   this->setCameraPosition(Vector2((this->_player.getPosition().x + 8) - globals::SCREEN_WIDTH/2,
 				    (this->_player.getPosition().y + 16) - globals::SCREEN_HEIGHT/2));
+  // Check collisions
+  // Tile
+  std::vector<Sprite> others;
+  //others.push_back(this->_enemy);
+  if ((others = this->_world.checkTileCollisions(this->_player)).size() > 0) {
+    this->_player.handleCollisionTile(others);
+  }
+
 }
 
 void Game::loadTileset(Graphics &graphics)

@@ -23,6 +23,7 @@ public:
 
   Vector2 getSize();
   Vector2 getPosition();
+  int getCollidingSide(Sprite other);
   bool isColliding(Sprite other);
 
 protected:

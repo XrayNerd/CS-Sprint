@@ -18,7 +18,7 @@ public:
 
   void update(int elapsedtime);
   void draw(Graphics &graphics, Vector2 camera);
-  void setId(unsigned short id);
+  unsigned short getId();
   std::pair<int, int> getCoords();
   void getIsPassble();
 protected:

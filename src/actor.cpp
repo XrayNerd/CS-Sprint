@@ -1,13 +1,17 @@
 #include "actor.h"
 #include "graphics.h"
-
+#include <iostream>
 
 Actor::Actor()
 {
   
 }
 
-Actor::Actor(SDL_Texture* tileset, Graphics &graphics, Vector2 position, Vector2 tilesetPosition, Vector2 size) :
+Actor::Actor(SDL_Texture* tileset,
+             Graphics &graphics,
+             Vector2 position,
+             Vector2 tilesetPosition,
+             Vector2 size) :
   Sprite(tileset,
 	 graphics,
 	 "sprites/spritesheet.png",
@@ -109,3 +113,48 @@ void Actor::loadTileset(Graphics &graphics)
   this->_tileset = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage("sprites/spritesheet.png"));
 }
 
+// Handles the collisions with *all*
+// tiles the actor is touching.
+void Actor::handleCollisionTile(std::vector<Sprite> &others)
+{
+  for (int i = 0; i < others.size(); i++) {
+    int side = Sprite::getCollidingSide(others.at(i));
+    if (side != 0) {
+      switch(side) {
+        //Left
+      case 1: {
+        std::cout<<"Colliding left"<<std::endl;
+        this->_deltaPosition.x = 0;
+        this->_position.x = others.at(i).getPosition().x +
+          others.at(i).getSize().x + 1;
+        break;
+      }
+        //Top
+      case 10: {
+        std::cout<<"Colliding top"<<std::endl;
+        this->_deltaPosition.y = 0;
+        this->_position.y = others.at(i).getPosition().y +
+          others.at(i).getSize().y + 1;
+        break;
+      }
+        //Bottom
+      case 11: {
+        std::cout<<"Colliding bottom"<<std::endl;
+        this->_position.y = others.at(i).getPosition().y -
+          this->_size.y - 1;
+        this->_deltaPosition.y = 0;
+        break;
+      }
+        //Right
+      case 100: {
+        std::cout<<"Colliding Right"<<std::endl;
+        this->_deltaPosition.x = 0;
+        this->_position.x = others.at(i).getPosition().x -
+          this->_size.x - 1;
+        break;
+
+      }
+      }
+    }
+  }
+}

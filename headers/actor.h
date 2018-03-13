@@ -31,6 +31,8 @@ public:
 
   void loadTileset(Graphics &graphics);
 
+  void handleCollisionTile(std::vector<Sprite> &others);
+
 protected:
   int speed;
   bool _isDead = false;

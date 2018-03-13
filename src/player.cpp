@@ -5,8 +5,16 @@ Player::Player() {
 
 }
 
-Player::Player(SDL_Texture* tileset, Graphics &graphics, int lives, Vector2 position, Vector2 tilesetPosition)
-  : Actor(tileset, graphics, position, tilesetPosition, Vector2(8, 12))
+Player::Player(SDL_Texture* tileset,
+               Graphics &graphics,
+               int lives,
+               Vector2 position,
+               Vector2 tilesetPosition)
+  : Actor(tileset,
+          graphics,
+          position,
+          tilesetPosition,
+          Vector2(8, 12))
 {
   this->_lives = lives;
   this->_collectedNotes = 0;

@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <map>
+#include <memory>
+#include <iostream>
 
 #include "globals.h"
 #include "tile.h"
@@ -25,14 +27,18 @@ public:
   void draw(Graphics &graphics, Vector2 camera);
 
   int height = 50;
-  int width = 50;
+  int width = 80;
 
-  Tile& getTileAt(unsigned int x, unsigned int y);
+  std::shared_ptr<Tile> getTileAt(unsigned int x, unsigned int y);
   void destroyTileAt(int x, int y);
+
+  std::vector<Sprite> checkTileCollisions(Sprite other);
+
 private:
   SDL_Texture* _tileset;
   std::vector<Tile> _tileList;
-  std::vector< std::vector< Vector2 > > _gridList;
+  std::vector<Tile> _collisionList;
+  std::vector< std::vector< std::shared_ptr<Tile> > > _gridList;
 
   void populateGrid();
   void loadTileset(Graphics &graphics);

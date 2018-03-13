@@ -15,7 +15,7 @@ Tile::Tile(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned 
   Sprite(tileset,
 	 graphics,
 	 "sprites/spritesheet.png",
-	 types::_typesList[0],
+	 types::_typesList[id],
 	 Vector2(8, 12),
 	 position)
 {
@@ -28,10 +28,9 @@ Vector2 Tile::getTypeSpritePos(unsigned short id)
   return types::_typesList[id];
 }
 
-void Tile::setId(unsigned short id)
+unsigned short Tile::getId()
 {
-  //this->_id = id;
-  //this->_tilesetPosition = getTypeSpritePos(id);
+  return this->_id;
 }
 
 std::pair<int, int> Tile::getCoords()

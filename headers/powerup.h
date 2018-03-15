@@ -18,6 +18,10 @@ public:
   bool getIsSpeed();
   bool getIsHealth();
 
+  bool isHidden();
+
+  void randomize();
+
 private:
   bool _isHidden;
   bool _isSpeed;

@@ -2,6 +2,7 @@
 #define QUESTION_H
 
 #include <string>
+#include <vector>
 
 #include "libsqlite.h"
 #include "tile.h"
@@ -13,7 +14,7 @@ public:
   Question(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned short id);
 
   void askQuestion();
-  std::string getRandomQuestion();
+  std::vector<std::string> getRandomQuestion();
 
 private:
 };

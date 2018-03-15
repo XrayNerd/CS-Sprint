@@ -2,10 +2,11 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+
 #include "world.h"
 #include "graphics.h"
 #include "tile.h"
-using namespace std;
+#include "libsqlite.h"
 
 
 float timeElapsed = 0;
@@ -25,12 +26,12 @@ World::World(Graphics &graphics)
   
   std::stringstream streamString(s);
 
-  vector<string> mapStringArray;
+  std::vector<std::string> mapStringArray;
   while (streamString.good())
   {
-      string subString;
-      std::getline( streamString, subString, ',');
-      mapStringArray.push_back( subString );
+    std::string subString;
+    std::getline( streamString, subString, ',');
+    mapStringArray.push_back( subString );
   }
   this->loadTileset(graphics);
   for (int y=0; y<World::height; y++)
@@ -104,7 +105,7 @@ std::shared_ptr<Tile> World::getTileAt(unsigned int x, unsigned int y)
 {
   int xCoord = (x - (x % 8))/8;
   int yCoord = (y - (y % 12))/12;
-  std::shared_ptr<Tile> tempTile = make_shared<Tile>();
+  std::shared_ptr<Tile> tempTile = std::make_shared<Tile>();
   *tempTile = this->_tileList[yCoord * World::width + xCoord];
   return tempTile;
 }

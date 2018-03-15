@@ -10,18 +10,18 @@ class Highscore
 {
 public:
   Highscore();
-  Highscore(std::string name, float score);
+  Highscore(std::string name, int score);
 
   void addToHighscoreList();
 
-  vector<Highscore> getHighscores();
+  std::vector<Highscore> getHighscores();
 
   std::string getName();
-  float getScore();
+  int getScore();
 
 private:
   std::string _name;
-  float _score;
+  int _score;
 
 };
 

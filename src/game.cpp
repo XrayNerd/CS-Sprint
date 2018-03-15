@@ -1,11 +1,12 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
+#include <random>
 
 #include "game.h"
 #include "graphics.h"
 #include "input.h"
-
+#include "highscore.h"
 
 /*  Game class
 *   Computes the *main* game loop and everything required for that
@@ -31,7 +32,13 @@ Game::~Game()
   std::cout<<"Enter your name: ";
   std::string name;
   std::getline(std::cin, name);
-  std::cout<<"ENDOFTHEGAME"<<std::endl;
+
+  Highscore highscore(name, this->_score);
+  highscore.addToHighscoreList();
+
+  for (Highscore h : highscore.getHighscores()) {
+    std::cout<<h.getName()<<": "<<h.getScore()<<std::endl;
+  }
 }
 
 void Game::gameLoop()
@@ -153,7 +160,7 @@ void Game::update(float elapsedTime)
 
   // Powerups
   for( Powerup p : this->_world.getPowerupList()) {
-    if (this->_player.isColliding(p)) {
+    if (this->_player.isColliding(p) && !p.isHidden()) {
       if (p.getIsSpeed()) {
         this->_player.incSpeed();
       }
@@ -161,15 +168,47 @@ void Game::update(float elapsedTime)
         this->_player.incHealth();
       }
     }
+    p.randomize();
+    p.hide();
   }
 
   // Questions
   for ( Question q : this->_world.getQuestionTileList()) {
     if (this->_player.isColliding(q)) {
-      std::cout<<q.getRandomQuestion()<<std::endl;
-      char answer;
-      std::cout << "What is the correct answer: ";
+      std::vector<std::string> stringArr = q.getRandomQuestion();
+      
+      std::cout<<stringArr[0]<<std::endl;
+      int randQ = std::rand() % 2;
+      if (randQ == 0) {
+        std::cout<<"1: "<<stringArr[1]<<std::endl;
+        std::cout<<"2: "<<stringArr[2]<<std::endl;
+      } else {
+        std::cout<<"1: "<<stringArr[2]<<std::endl;
+        std::cout<<"2: "<<stringArr[1]<<std::endl;
+      }
+      int  answer;
+      std::cout << "What is the correct answer 1 or 2? : ";
       std::cin >> answer;
+      if (randQ == 0) {
+        if (answer == 1) {
+          std::cout<<"Correct!"<<std::endl;
+          this->_score += 1000000;
+        } else {
+          std::cout<<"Incorrect answer!"<<std::endl;
+          this->_player.takeDamage();
+          this->_score -= 1000000;
+        }
+      } else {
+        if (answer == 2) {
+          std::cout<<"Correct!"<<std::endl;
+          this->_score += 1000000;
+        } else {
+          std::cout<<"Incorrect answer!"<<std::endl;
+          this->_player.takeDamage();
+          this->_score -= 1000000;
+        }
+      }
+      this->_player.setPosition(playerPos);
     }
   }
 }

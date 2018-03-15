@@ -1,5 +1,6 @@
 #include "powerup.h"
 #include "sprite.h"
+#include "libsqlite.h"
 
 Powerup::Powerup() {}
 
@@ -24,6 +25,11 @@ void Powerup::unHide()
   this->_isHidden = false;
 }
 
+bool Powerup::isHidden()
+{
+  return this->_isHidden;
+}
+
 //Modified draw function
 void Powerup::draw(Graphics &graphics, Vector2 camera)
 {
@@ -42,3 +48,16 @@ bool Powerup::getIsHealth()
 {
   return this->_isHealth;
 }
+
+void Powerup::randomize()
+{
+  sqlite::sqlite _db("highquestions.db");
+  auto cur = _db.get_statement();
+  cur->set_sql("SELECT * FROM powerups LIMIT (ABS(RANDOM()) % (SELECT COUNT(*) FROM powerups)),1;");
+  cur->prepare();
+  cur->step();
+
+  this->_isSpeed = (cur->get_int(2)>0 ? true : false);
+  this->_isHealth = (cur->get_int(3)>0 ? true : false);
+}
+

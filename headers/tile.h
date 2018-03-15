@@ -17,7 +17,6 @@ public:
   Tile(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned short id);
 
   void update(int elapsedtime);
-  void draw(Graphics &graphics, Vector2 camera);
   unsigned short getId();
   std::pair<int, int> getCoords();
   void getIsPassble();

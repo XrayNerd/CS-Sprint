@@ -18,7 +18,9 @@ Actor::Actor(SDL_Texture* tileset,
 	 tilesetPosition,
 	 size,
 	 position)
-{}
+{
+  this->_speed = 1;
+}
 
 Actor::~Actor()
 {
@@ -43,26 +45,6 @@ void Actor::draw(Graphics &graphics, Vector2 camera)
 		       &_sourceRect,
 		       &destinationRectangle);
 }
-// Sprite::draw(graphics, camera);
-  /*
-  SDL_Rect destRect =
-  {
-    Sprite::_position.x,
-    Sprite::_position.y,
-    this->_size.x * globals::SPRITE_SCALE,
-    this->_size.y * globals::SPRITE_SCALE
-  };
-
-  SDL_Rect sourceRect =
-  {
-    this->_tilesetPosition.x,
-    this->_tilesetPosition.y,
-    8,
-    12
-    };
-
-    graphics.blitSurface(this->_tileset, &sourceRect, &destRect);*/
-//}
 
 void Actor::update(int elapsedTime)
 {
@@ -76,22 +58,22 @@ void Actor::update(int elapsedTime)
 
 void Actor::moveUp()
 {
-  this->_deltaPosition.y = -1;
+  this->_deltaPosition.y = -1*this->_speed;
 }
 
 void Actor::moveDown()
 {
-  this->_deltaPosition.y = 1;
+  this->_deltaPosition.y = 1*this->_speed;
 }
 
 void Actor::moveLeft()
 {
-  this->_deltaPosition.x = -1;
+  this->_deltaPosition.x = -1*this->_speed;
 }
 
 void Actor::moveRight()
 {
-  this->_deltaPosition.x = 1;
+  this->_deltaPosition.x = 1*this->_speed;
 }
 
 void Actor::stopMovingX()

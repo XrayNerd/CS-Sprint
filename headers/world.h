@@ -34,6 +34,7 @@ public:
   void destroyTileAt(int x, int y);
 
   std::vector<Sprite> checkTileCollisions(Sprite other);
+  std::vector<Powerup> returnPowerupList();
 
 private:
   SDL_Texture* _tileset;

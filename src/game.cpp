@@ -144,6 +144,18 @@ void Game::update(float elapsedTime)
   if (others.size() > 0) {
     this->_player.setPosition(playerPos);
   }
+  // Check collisions
+  // Powerups
+  for( Powerup p : this->_world.returnPowerupList()) {
+    if (this->_player.isColliding(p)) {
+      if (p.getIsSpeed()) {
+        this->_player.incSpeed();
+      }
+      if (p.getIsHealth()){
+        this->_player.incHealth();
+      }
+    }
+  }
 }
 
 void Game::loadTileset(Graphics &graphics)

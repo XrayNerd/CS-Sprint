@@ -119,3 +119,8 @@ std::vector<Sprite> World::checkTileCollisions(Sprite other)
   }
   return others;
 }
+
+std::vector<Powerup> World::returnPowerupList()
+{
+  return this->_powerupList;
+}

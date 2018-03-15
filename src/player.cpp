@@ -44,3 +44,13 @@ void Player::collectNote()
 {
   this->_collectedNotes += 1;
 }
+
+void Player::incSpeed()
+{
+  this->_speed += 0.125;
+}
+
+void Player::incHealth()
+{
+  this->_lives++;
+}

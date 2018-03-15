@@ -36,7 +36,7 @@ public:
   void handleCollisionTile(std::vector<Sprite> &others);
 
 protected:
-  int speed;
+  int _speed;
   bool _isDead = false;
   float _timeElapsed;
   Vector2 _deltaPosition;

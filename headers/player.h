@@ -15,6 +15,9 @@ public:
   void takeDamage();
   void collectNote();
 
+  void incSpeed();
+  void incHealth();
+
 protected:
   int _collectedNotes;
   int _lives;

@@ -4,7 +4,7 @@
 
 To compile CS-Sprint requires SDL2-dev and SDL2-image-dev; they can be installed by running:
 ```
-$ sudo apt-get install libsdl2-dev libsdl2-image-dev
+$ sudo apt-get install libsdl2-dev libsdl2-image-dev sqlite3
 ```
 
 # Usage

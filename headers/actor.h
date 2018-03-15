@@ -22,6 +22,8 @@ public:
 
   void kill();
 
+  void setPosition(Vector2 newPosition);
+
   void moveUp();
   void moveDown();
   void moveLeft();

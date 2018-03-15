@@ -48,7 +48,7 @@ void Game::gameLoop()
   while (true)
   {
      input.beginNewFrame();
-    this->_enemy.Enemy::moveDown();
+     this->_enemy.pathfinding(this->_player);
 
     if (SDL_PollEvent(&event))
     {
@@ -128,19 +128,22 @@ void Game::draw(Graphics &graphics, Vector2 camera)
 
 void Game::update(float elapsedTime)
 {
+  Vector2 playerPos = this->_player.getPosition();
+  
   this->_world.update(elapsedTime);
   this->_player.update(elapsedTime);
   this->_enemy.Enemy::update(elapsedTime);
   this->setCameraPosition(Vector2((this->_player.getPosition().x + 8) - globals::SCREEN_WIDTH/2,
 				    (this->_player.getPosition().y + 16) - globals::SCREEN_HEIGHT/2));
+
+  
   // Check collisions
   // Tile
   std::vector<Sprite> others;
-  //others.push_back(this->_enemy);
-  if ((others = this->_world.checkTileCollisions(this->_player)).size() > 0) {
-    this->_player.handleCollisionTile(others);
+  others = this->_world.checkTileCollisions(this->_player);
+  if (others.size() > 0) {
+    this->_player.setPosition(playerPos);
   }
-
 }
 
 void Game::loadTileset(Graphics &graphics)

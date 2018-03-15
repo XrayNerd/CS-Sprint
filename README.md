@@ -28,9 +28,9 @@ These are things that we need have planned to do:
   * [X] Baseline graphics engine $
   * [X] World generation $
     * [X] Tile based system $
-  * [ ] Collision Testing $
+  * [x] Collision Testing $
     * [ ] Sector based testing $
-  * [ ] Loading in a map $
+  * [x] Loading in a map $
     * [X] Having a map to load in $
   * [ ] Database handling $
     * [ ] Questions database
@@ -39,9 +39,9 @@ These are things that we need have planned to do:
   * [X] Player $
     * [X] Input $
     * [X] Movement $
-  * [ ] Enemy $
-    * [ ] Pathfinding $
-    * [ ] Movement $
+  * [x] Enemy $
+    * [x] Pathfinding $
+    * [x] Movement $
   * [ ] Menu
     * [ ] Main
     * [ ] Pause

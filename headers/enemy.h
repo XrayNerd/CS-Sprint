@@ -22,6 +22,7 @@ public:
   void stopMovingX();
   void stopMovingY();
 
+  void pathfinding(Sprite other);
 private:
   float _size;
   float _totalElapsedTime;

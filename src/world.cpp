@@ -111,10 +111,5 @@ std::vector<Sprite> World::checkTileCollisions(Sprite other)
       others.push_back(x);
     }
   }
-  std::cout<<"Current Collision List: ";
-  for (x : others) {
-    std::cout<<"X: "<< x.getPosition().x <<" " << "Y: "<<x.getPosition().y;
-  }
-  std::cout<<std::endl;
   return others;
 }

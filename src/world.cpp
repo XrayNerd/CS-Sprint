@@ -38,35 +38,57 @@ World::World(Graphics &graphics)
     for (int x=0; x<World::width; x++)
     {
       int id;
+      // Convert string read in from
+      // file to into int.
       std::stringstream convert(mapStringArray.at(y*World::width + x));
       convert >> id;
-      Tile tile(this->_tileset,
-                graphics,
-                Vector2(x*8*globals::SPRITE_SCALE,
-                        y*12*globals::SPRITE_SCALE),
-                id
-                );
-      this->_tileList.push_back(tile);
-      if (tile.getId() != 0) {
-        this->_collisionList.push_back(tile);
+      if (id != 22) {
+        // Add tile
+        Tile tile(this->_tileset,
+                  graphics,
+                  Vector2(x*8*globals::SPRITE_SCALE,
+                          y*12*globals::SPRITE_SCALE),
+                  id
+                  );
+        this->_tileList.push_back(tile);
+        if (tile.getId() != 0) {
+          this->_collisionList.push_back(tile);
+        }
+      } else {
+        // Add powerup
+        Powerup powerup(this->_tileset,
+                        graphics,
+                        Vector2(x*8*globals::SPRITE_SCALE,
+                                y*12*globals::SPRITE_SCALE),
+                        id,
+                        true,
+                        false);
+          this->_powerupList.push_back(powerup);
       }
     }
   }
-  //this->populateGrid();
 }
 
+// Deconstructor
 World::~World() {}
 
+// Runs through tile list and powerup list
+// and calls the draw function
 void World::draw(Graphics &graphics, Vector2 camera)
 {
-  for (int i = 0; i < this->_tileList.size(); i++)
-  {
-      this->_tileList[i].draw(graphics, camera);
+  for (Tile t : this->_tileList) {
+    t.draw(graphics, camera);
+  }
+  for (Powerup p : this->_powerupList) {
+    p.draw(graphics, camera);
   }
 }
 
 void World::update(int elapsedtime) {}
 
+
+// Returns a shared pointer
+// of a tile at coords x, y
 std::shared_ptr<Tile> World::getTileAt(unsigned int x, unsigned int y)
 {
   int xCoord = (x - (x % 8))/8;
@@ -76,33 +98,17 @@ std::shared_ptr<Tile> World::getTileAt(unsigned int x, unsigned int y)
   return tempTile;
 }
 
+// Load tileset so it can
+// be passed down to tiles
 void World::loadTileset(Graphics &graphics)
 {
   this->_tileset = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage("sprites/spritesheet.png"));
 }
 
-void World::populateGrid()
-{
-  // Create a check for collidable tiles only
-  //
-  for(int i=0;i<World::width/10*World::height/10;i++) {
-    vector< std::shared_ptr<Tile> > grid;
-      this->_gridList.push_back(grid);
-  }
-  this->getTileAt((40+8)*16, (30+1)*24);
-  for (int y=0; y<World::height; y += 10) {
-    for (int x=0; x<World::width; x += 10) {
-      for (int i=0; i<10; i++) {
-        for (int j=0; j<10; j++) {
-          this->_gridList[(y/10)*(World::width/10)
-                          + x/10].push_back(this->getTileAt((y+i)*16, (x+j)*24));
-        }
-      }
-    }
-  }
-}
-
-
+// Checks if param other is colliding with
+// tiles in the collision list
+// Returns an array of all tiles that are
+// colliding.
 std::vector<Sprite> World::checkTileCollisions(Sprite other)
 {
   std::vector<Sprite> others;

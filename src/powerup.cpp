@@ -1,9 +1,11 @@
 #include "powerup.h"
+#include "sprite.h"
 
 Powerup::Powerup() {}
 
-// Real constructor
-Powerup::Powerup(bool speed, bool health)
+// Real constructor with a delegating constructor
+Powerup::Powerup(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned short id,  bool speed, bool health) :
+  Tile(tileset, graphics, position, id)
 {
   this->_isSpeed = speed;
   this->_isHealth = health;
@@ -28,8 +30,6 @@ void Powerup::draw(Graphics &graphics, Vector2 camera)
   //If Not hidden draw the tile
   if (!this->_isHidden) {
     Sprite::draw(graphics, camera);
-  } else {
-
   }
 }
 

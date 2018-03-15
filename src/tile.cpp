@@ -19,7 +19,6 @@ Tile::Tile(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned 
 	 Vector2(8, 12),
 	 position)
 {
-  //  this->_tileset = tileset;
   this->_id = id;
 }
 

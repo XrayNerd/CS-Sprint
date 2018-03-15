@@ -8,6 +8,7 @@
 
 #include "globals.h"
 #include "tile.h"
+#include "powerup.h"
 
 class Graphics;
 
@@ -37,6 +38,7 @@ public:
 private:
   SDL_Texture* _tileset;
   std::vector<Tile> _tileList;
+  std::vector<Powerup> _powerupList;
   std::vector<Tile> _collisionList;
   std::vector< std::vector< std::shared_ptr<Tile> > > _gridList;
 

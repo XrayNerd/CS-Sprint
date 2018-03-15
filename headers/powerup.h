@@ -8,7 +8,7 @@ class Powerup : public Tile
 {
 public:
   Powerup();
-  Powerup(bool speed, bool health);
+  Powerup(SDL_Texture* tileset, Graphics &graphics, Vector2 position, unsigned short id, bool speed, bool health);
 
   void hide();
   void unHide();

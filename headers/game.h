@@ -27,6 +27,8 @@ private:
   Enemy _enemy;
   Sprite _sprite;
 
+  float _score;
+
   SDL_Texture* _tileset;
 
 };

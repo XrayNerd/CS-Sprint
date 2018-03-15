@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include <iostream>
-
+#include <string>
 
 #include "game.h"
 #include "graphics.h"
@@ -20,13 +20,18 @@ namespace
 Game::Game()
 {
   SDL_Init(SDL_INIT_EVERYTHING);
+  this->_score = 0;
 
   this->gameLoop();
 }
 
 Game::~Game()
 {
-
+  std::cout<<"SCORE: " << this->_score <<std::endl;
+  std::cout<<"Enter your name: ";
+  std::string name;
+  std::getline(std::cin, name);
+  std::cout<<"ENDOFTHEGAME"<<std::endl;
 }
 
 void Game::gameLoop()
@@ -108,6 +113,7 @@ void Game::gameLoop()
 
     const int CURRENT_TIME_MS = SDL_GetTicks();
     int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
+    this->_score += CURRENT_TIME_MS;
     // This means we cant go above 60 FPS
     this->update(std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
     LAST_UPDATE_TIME = CURRENT_TIME_MS;
@@ -144,9 +150,9 @@ void Game::update(float elapsedTime)
   if (others.size() > 0) {
     this->_player.setPosition(playerPos);
   }
-  // Check collisions
+
   // Powerups
-  for( Powerup p : this->_world.returnPowerupList()) {
+  for( Powerup p : this->_world.getPowerupList()) {
     if (this->_player.isColliding(p)) {
       if (p.getIsSpeed()) {
         this->_player.incSpeed();
@@ -154,6 +160,16 @@ void Game::update(float elapsedTime)
       if (p.getIsHealth()){
         this->_player.incHealth();
       }
+    }
+  }
+
+  // Questions
+  for ( Question q : this->_world.getQuestionTileList()) {
+    if (this->_player.isColliding(q)) {
+      std::cout<<q.getRandomQuestion()<<std::endl;
+      char answer;
+      std::cout << "What is the correct answer: ";
+      std::cin >> answer;
     }
   }
 }

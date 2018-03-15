@@ -47,7 +47,7 @@ void Player::collectNote()
 
 void Player::incSpeed()
 {
-  this->_speed += 0.125;
+  this->_speed += 0.0125;
 }
 
 void Player::incHealth()

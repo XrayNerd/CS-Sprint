@@ -42,7 +42,7 @@ World::World(Graphics &graphics)
       // file to into int.
       std::stringstream convert(mapStringArray.at(y*World::width + x));
       convert >> id;
-      if (id != 22) {
+      if (id != 22 && id != 23) {
         // Add tile
         Tile tile(this->_tileset,
                   graphics,
@@ -54,7 +54,7 @@ World::World(Graphics &graphics)
         if (tile.getId() != 0) {
           this->_collisionList.push_back(tile);
         }
-      } else {
+      } if (id == 22) {
         // Add powerup
         Powerup powerup(this->_tileset,
                         graphics,
@@ -64,6 +64,14 @@ World::World(Graphics &graphics)
                         true,
                         false);
           this->_powerupList.push_back(powerup);
+      } if (id == 23) {
+        //Add lecture notes
+        Question question(this->_tileset,
+                          graphics,
+                          Vector2(x*8*globals::SPRITE_SCALE,
+                                  y*12*globals::SPRITE_SCALE),
+                          id);
+        this->_questionTileList.push_back(question);
       }
     }
   }
@@ -81,6 +89,9 @@ void World::draw(Graphics &graphics, Vector2 camera)
   }
   for (Powerup p : this->_powerupList) {
     p.draw(graphics, camera);
+  }
+  for (Question q: this->_questionTileList) {
+    q.draw(graphics, camera);
   }
 }
 
@@ -120,7 +131,12 @@ std::vector<Sprite> World::checkTileCollisions(Sprite other)
   return others;
 }
 
-std::vector<Powerup> World::returnPowerupList()
+std::vector<Powerup> World::getPowerupList()
 {
   return this->_powerupList;
+}
+
+std::vector<Question> World::getQuestionTileList()
+{
+  return this->_questionTileList;
 }

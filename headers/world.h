@@ -9,6 +9,7 @@
 #include "globals.h"
 #include "tile.h"
 #include "powerup.h"
+#include "question.h"
 
 class Graphics;
 
@@ -34,13 +35,15 @@ public:
   void destroyTileAt(int x, int y);
 
   std::vector<Sprite> checkTileCollisions(Sprite other);
-  std::vector<Powerup> returnPowerupList();
+  std::vector<Powerup> getPowerupList();
+  std::vector<Question> getQuestionTileList();
 
 private:
   SDL_Texture* _tileset;
   std::vector<Tile> _tileList;
   std::vector<Powerup> _powerupList;
   std::vector<Tile> _collisionList;
+  std::vector<Question> _questionTileList;
   std::vector< std::vector< std::shared_ptr<Tile> > > _gridList;
 
   void populateGrid();

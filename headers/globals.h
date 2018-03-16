@@ -37,7 +37,8 @@ namespace types
     Vector2(32, 132),
     Vector2(8, 144),
     Vector2(16, 144),
-    Vector2(40, 144)
+    Vector2(40, 144),
+    Vector2(0, 132)
   };
 }
 #endif

@@ -32,9 +32,9 @@ These are things that we need have planned to do:
     * [ ] Sector based testing $
   * [x] Loading in a map $
     * [X] Having a map to load in $
-  * [ ] Database handling $
-    * [ ] Questions database
-    * [ ] High score database $
+  * [x] Database handling $
+    * [x] Questions database
+    * [x] High score database $
   * [X] Camera scrolling $
   * [X] Player $
     * [X] Input $
